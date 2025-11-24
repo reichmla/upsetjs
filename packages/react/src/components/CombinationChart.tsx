@@ -44,6 +44,8 @@ const CombinationChart = /*!#__PURE__*/ React.memo(function CombinationChart<T>(
   children,
 }: CombinationChartProps<T>) {
   const yValues = computeOverflowValues(d.cardinality, data.cs.max, data.cs.y);
+  const setNames = Array.from(d.sets).map((set) => set.name);
+  const setNamesClass = setNames.join('_');
 
   const genPosition = addonPositionGenerator(size.cs.h + size.sets.h, size.cs.addonPadding);
   return (
@@ -80,10 +82,13 @@ const CombinationChart = /*!#__PURE__*/ React.memo(function CombinationChart<T>(
                 height={size.cs.h - y}
                 width={data.cs.bandWidth - offset * 2}
                 className={clsx(
-                  `fillPrimary-${style.id}`,
-                  i < yValues.length - 1 && `fillOverflow${yValues.length - 1 - i}-${style.id}`,
+                  `fillPrimary-${style.id} combinations-${setNamesClass}`,
+                  i < yValues.length - 1 &&
+                  `fillOverflow${yValues.length - 1 - i}-${style.id}${setNamesClass ? ` combinations-${setNamesClass}` : ''
+                  }`,
                   style.classNames.bar
                 )}
+                id={`combinations-${setNamesClass}`}
                 style={mergeColor(style.styles.bar, d.color)}
               />
             );

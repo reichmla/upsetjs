@@ -86,10 +86,11 @@ const SetChart = /*!#__PURE__*/ React.memo(function SetChart<T>({
                 width={size.sets.w - x}
                 height={data.sets.bandWidth - offset * 2}
                 className={clsx(
-                  `fillPrimary-${style.id}`,
-                  i < xValues.length - 1 && `fillOverflow${xValues.length - 1 - i}-${style.id}`,
+                  `fillPrimary-${style.id} set-${d.name}`,
+                  i < xValues.length - 1 && `fillOverflow${xValues.length - 1 - i}-${style.id} set_${d.name}`,
                   style.classNames.bar
                 )}
+                id={`set_${d.name}`}
                 style={mergeColor(style.styles.bar, d.color)}
               />
             );
