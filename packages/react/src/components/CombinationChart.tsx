@@ -125,7 +125,8 @@ const CombinationChart = /*!#__PURE__*/ React.memo(function CombinationChart<T>(
             name={style.tooltips ? d.name : ''}
             style={style.styles.dot}
             fill={undefined}
-            className={clsx(`fillNotMember-${style.id}`, style.classNames.dot)}
+            id={`not-member-combinations-${setNamesClass}-${i}`}
+            className={clsx(`fillNotMember-${style.id}`, style.classNames.dot, `not-member-combinations-${setNamesClass}`)}
           />
         );
       })}
@@ -153,7 +154,8 @@ const CombinationChart = /*!#__PURE__*/ React.memo(function CombinationChart<T>(
             name={style.tooltips ? s.name : ''}
             style={style.styles.dot}
             fill={s.color ?? d.color}
-            className={clsx(`fillPrimary-${style.id}`, style.classNames.dot)}
+            id={`not-member-combinations-${setNamesClass}-${i}`}
+            className={clsx(`fillPrimary-${style.id}`, style.classNames.dot, `not-member-combinations-${setNamesClass}`)}
           />
         );
       })}

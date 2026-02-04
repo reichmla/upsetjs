@@ -16,6 +16,7 @@ const UpSetDot = /*!#__PURE__*/ React.memo(function UpSetDot({
   className,
   style,
   fill,
+  id
 }: PropsWithChildren<{
   r: number;
   cx: number;
@@ -24,9 +25,10 @@ const UpSetDot = /*!#__PURE__*/ React.memo(function UpSetDot({
   fill?: string;
   name: string;
   style?: React.CSSProperties;
+  id?: string
 }>) {
   return (
-    <circle r={r} cx={cx} cy={cy} className={className} style={mergeColor(style, fill)}>
+    <circle r={r} cx={cx} cy={cy} className={className} id={id} style={mergeColor(style, fill)}>
       {name && <title>{name}</title>}
     </circle>
   );
