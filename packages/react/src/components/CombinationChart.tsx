@@ -82,9 +82,9 @@ const CombinationChart = /*!#__PURE__*/ React.memo(function CombinationChart<T>(
                 height={size.cs.h - y}
                 width={data.cs.bandWidth - offset * 2}
                 className={clsx(
-                  `fillPrimary-${style.id} combinations-${setNamesClass}`,
+                  `fillPrimary-${style.id} combinations-${setNamesClass} color-${setNamesClass}`,
                   i < yValues.length - 1 &&
-                  `fillOverflow${yValues.length - 1 - i}-${style.id}${setNamesClass ? ` combinations-${setNamesClass}` : ''
+                  `fillOverflow${yValues.length - 1 - i}-${style.id}${setNamesClass ? ` combinations-${setNamesClass} color-${setNamesClass}` : ''
                   }`,
                   style.classNames.bar
                 )}
@@ -97,7 +97,7 @@ const CombinationChart = /*!#__PURE__*/ React.memo(function CombinationChart<T>(
             y={yValues[0] - style.barLabelOffset}
             x={data.cs.bandWidth / 2}
             style={style.styles.barLabel}
-            className={clsx(`cBarTextStyle-${style.id}`, style.classNames.barLabel)}
+            className={clsx(`cBarTextStyle-${style.id}`, style.classNames.barLabel, `bar-text-${setNamesClass}`, `color-${setNamesClass}`)}
           >
             {data.cs.format(d.cardinality)}
           </text>
@@ -126,7 +126,7 @@ const CombinationChart = /*!#__PURE__*/ React.memo(function CombinationChart<T>(
             style={style.styles.dot}
             fill={undefined}
             id={`not-member-combinations-${setNamesClass}-${i}`}
-            className={clsx(`fillNotMember-${style.id}`, style.classNames.dot, `not-member-combinations-${setNamesClass}`)}
+            className={clsx(`fillNotMember-${style.id}`, style.classNames.dot, `not-member-combinations-${setNamesClass}`, `set-dot-${s.name}`)}
           />
         );
       })}
@@ -137,7 +137,7 @@ const CombinationChart = /*!#__PURE__*/ React.memo(function CombinationChart<T>(
           x2={data.cs.cx}
           y2={data.sets.y(data.sets.rv.find((p) => data.cs.has(d, p))!)! + data.sets.cy + (data.r - 1)}
           style={d.color ? { stroke: d.color } : undefined}
-          className={`upsetLine-${data.id}`}
+          className={`upsetLine-${data.id} upset-line-${setNamesClass} color-${setNamesClass}`}
         />
       )}
       {data.sets.v.map((s, i) => {
@@ -154,8 +154,8 @@ const CombinationChart = /*!#__PURE__*/ React.memo(function CombinationChart<T>(
             name={style.tooltips ? s.name : ''}
             style={style.styles.dot}
             fill={s.color ?? d.color}
-            id={`not-member-combinations-${setNamesClass}-${i}`}
-            className={clsx(`fillPrimary-${style.id}`, style.classNames.dot, `not-member-combinations-${setNamesClass}`)}
+            id={`member-combinations-${setNamesClass}-${i}`}
+            className={clsx(`fillPrimary-${style.id}`, style.classNames.dot, `member-combinations-${setNamesClass}`, `color-${setNamesClass}`, `set-dot-${s.name}`)}
           />
         );
       })}

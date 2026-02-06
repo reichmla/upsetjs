@@ -100,7 +100,7 @@ const SetChart = /*!#__PURE__*/ React.memo(function SetChart<T>({
             dx={-style.barLabelOffset}
             y={data.sets.bandWidth / 2}
             style={style.styles.barLabel}
-            className={clsx(`sBarTextStyle-${style.id}`, style.classNames.barLabel)}
+            className={clsx(`sBarTextStyle-${style.id}`, style.classNames.barLabel, `set_${d.name}`)}
           >
             {data.sets.format(d.cardinality)}
           </text>
@@ -109,7 +109,7 @@ const SetChart = /*!#__PURE__*/ React.memo(function SetChart<T>({
       <text
         x={size.sets.w + anchorOffset}
         y={data.sets.bandWidth / 2}
-        className={clsx(`setTextStyle-${style.id}`, style.classNames.setLabel)}
+        className={clsx(`setTextStyle-${style.id}`, style.classNames.setLabel, `set_${d.name}`)}
         style={style.styles.setLabel}
         clipPath={`url(#clip-${size.id})`}
       >
