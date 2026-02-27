@@ -97,7 +97,7 @@ const SetChart = /*!#__PURE__*/ React.memo(function SetChart<T>({
             );
           })}
           <g>
-            {(d.color !== '#ffffff' && d.color !== 'white' && d.color !== '#FFF' && d.color !== '#FFFFFF') && (
+            {(d.color !== '#ffffff' && d.color !== '#FFFFFF' && d.color !== undefined && d.color !== null) && (
               <circle
                 cx={-7}
                 cy={data.sets.bandWidth / 2}
@@ -119,7 +119,7 @@ const SetChart = /*!#__PURE__*/ React.memo(function SetChart<T>({
       )}
 
       <g>
-        {(d.color !== '#ffffff' && d.color !== 'white' && d.color !== '#FFF' && d.color !== '#FFFFFF') && (
+        {(d.color !== '#ffffff' && d.color !== '#FFFFFF' && d.color !== undefined && d.color !== null) && (
           <circle
             cx={-7}
             cy={data.sets.bandWidth / 2}
