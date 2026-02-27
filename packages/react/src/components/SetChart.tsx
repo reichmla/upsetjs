@@ -42,8 +42,8 @@ const SetChart = /*!#__PURE__*/ React.memo(function SetChart<T>({
     style.setLabelAlignment === 'center'
       ? size.labels.w / 2
       : style.setLabelAlignment === 'left'
-      ? 2
-      : size.labels.w - 2;
+        ? 2
+        : size.labels.w - 2;
   return (
     <g
       transform={`translate(0, ${data.sets.y(d)})`}
@@ -65,6 +65,7 @@ const SetChart = /*!#__PURE__*/ React.memo(function SetChart<T>({
         width={size.sets.w + size.labels.w + size.cs.w + size.sets.after}
         height={data.sets.bandWidth}
         className={`hoverBar-${style.id}`}
+        style={(d.color !== '#ffffff' && d.color !== 'white' && d.color !== '#FFF' && d.color !== '#FFFFFF') ? { fill: d.color, opacity: 0.25 } : undefined}
       />
       {i % 2 === 1 && (
         <rect
@@ -95,26 +96,47 @@ const SetChart = /*!#__PURE__*/ React.memo(function SetChart<T>({
               />
             );
           })}
-          <text
-            x={xValues[0]}
-            dx={-style.barLabelOffset}
-            y={data.sets.bandWidth / 2}
-            style={style.styles.barLabel}
-            className={clsx(`sBarTextStyle-${style.id}`, style.classNames.barLabel, `set_${d.name}`)}
-          >
-            {data.sets.format(d.cardinality)}
-          </text>
+          <g>
+            {(d.color !== '#ffffff' && d.color !== 'white' && d.color !== '#FFF' && d.color !== '#FFFFFF') && (
+              <circle
+                cx={-7}
+                cy={data.sets.bandWidth / 2}
+                r={3}
+                fill={d.color}
+              />
+            )}
+            <text
+              x={xValues[0]}
+              dx={-style.barLabelOffset}
+              y={data.sets.bandWidth / 2}
+              style={style.styles.barLabel}
+              className={clsx(`sBarTextStyle-${style.id}`, style.classNames.barLabel, `set_${d.name}`)}
+            >
+              {data.sets.format(d.cardinality)}
+            </text>
+          </g>
         </>
       )}
-      <text
-        x={size.sets.w + anchorOffset}
-        y={data.sets.bandWidth / 2}
-        className={clsx(`setTextStyle-${style.id}`, style.classNames.setLabel, `set_${d.name}`)}
-        style={style.styles.setLabel}
-        clipPath={`url(#clip-${size.id})`}
-      >
-        {d.name}
-      </text>
+
+      <g>
+        {(d.color !== '#ffffff' && d.color !== 'white' && d.color !== '#FFF' && d.color !== '#FFFFFF') && (
+          <circle
+            cx={-7}
+            cy={data.sets.bandWidth / 2}
+            r={3}
+            fill={d.color}
+          />
+        )}
+        <text
+          x={size.sets.w + anchorOffset}
+          y={data.sets.bandWidth / 2}
+          className={clsx(`setTextStyle-${style.id}`, style.classNames.setLabel, `set_${d.name}`)}
+          style={style.styles.setLabel}
+          clipPath={`url(#clip-${size.id})`}
+        >
+          {d.name}
+        </text>
+      </g>
       {size.sets.addons.map((addon) => (
         <g key={addon.name} transform={`translate(${genPosition(addon)},0)`}>
           {addon.render({ set: d, width: addon.size, height: data.sets.bandWidth, theme: style.theme })}
